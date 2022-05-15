@@ -57,15 +57,6 @@ def getname():
     return {'response': name}
 
 
-
-@app.get('/api')
-def hello():
-    return {
-        "service": Environment().COMPOSE_PROJECT_NAME,
-        "uptime": get_uptime()
-    }
-
-
 @app.get('/')
 def index():
     return HTMLResponse(
