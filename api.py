@@ -39,18 +39,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class GameItem(BaseModel):
+    board: List[List[str]]
+    board_width: int
+
 
 @app.post('/api/nextmove')
-def nextmove(board: List[str]):
-    print(board)
-    nextMove = random.randint(0, 6)
-    return {'result': nextMove}
+def nextmove(game: GameItem):
+    print(game.board)
+    nextMove = random.randint(0, game.board_width-1)
+    return {'response': nextMove}
 
 
-@app.post('/api/getname')
+@app.get('/api/getname')
 def getname():
     name = "MyName"
-    return {'result': MyName}
+    return {'response': name}
 
 
 
