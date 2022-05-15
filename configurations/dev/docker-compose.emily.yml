@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  emily-connectfouragentapitemplate-mdt3yk:
+
+    image: emily-connectfouragentapitemplate-mdt3yk
+    container_name: emily-connectfouragentapitemplate-mdt3yk
+
+    build:
+      context: ../../
+      dockerfile: ./Dockerfile
+
+    env_file:
+      - ./.env
+    
+    ports:
+      - ${HOST_PORT}:${CONTAINER_PORT}
+
+    ipc: ${IPC}
+    runtime: ${RUNTIME}
+    networks:
+      - emily-connectfouragentapitemplate-mdt3yk-network
+
+networks:
+  emily-connectfouragentapitemplate-mdt3yk-network:
+    driver: bridge
+    name: emily-connectfouragentapitemplate-mdt3yk-network
