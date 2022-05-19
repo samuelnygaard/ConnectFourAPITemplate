@@ -64,15 +64,15 @@ def getname():
     return {'response': name}
 
 
-# @app.get('/')
-# def index():
-#     return HTMLResponse(
-#         render(
-#             'static/index.html',
-#             host="127.0.0.1",
-#             port=5000
-#         )
-#     )
+@app.get('/')
+def index():
+    return HTMLResponse(
+        render(
+            'static/index.html',
+            host="127.0.0.1",
+            port=5000
+        )
+    )
 
 
 if __name__ == '__main__':
