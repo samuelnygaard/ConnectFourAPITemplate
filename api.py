@@ -62,8 +62,8 @@ def index():
     return HTMLResponse(
         render(
             'static/index.html',
-            host=Environment().HOST_IP,
-            port=Environment().CONTAINER_PORT
+            host="127.0.0.1",
+            port=5000
         )
     )
 
@@ -71,7 +71,7 @@ def index():
 if __name__ == '__main__':
     uvicorn.run(
         'api:app',
-        host=Environment().HOST_IP,
-        port=Environment().CONTAINER_PORT
+        host="127.0.0.1",
+        port=5000
     )
 
