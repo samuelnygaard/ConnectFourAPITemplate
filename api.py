@@ -41,31 +41,27 @@ app.add_middleware(
 
 class GameItem(BaseModel):
     board: List[List[str]]
-    board_width: int
+    player_symbol: str
 
 
 @app.post('/api/nextmove')
 def nextmove(game: GameItem):
-    print(game.board)
-    nextMove = random.randint(0, game.board_width-1)
-    return {'response': nextMove}
+
+    # Select random column to drop piece into
+    board_width = len(game.board[0])
+    column = random.randint(0, board_width-1)
+
+    # TODO: Implement clever connect four agent here
+
+    return {'response': column}
 
 
 @app.get('/api/getname')
 def getname():
-    name = "MyName"
+
+    # TODO: Set your agent's name here
+    name = "AgentName"
     return {'response': name}
-
-
-@app.get('/')
-def index():
-    return HTMLResponse(
-        render(
-            'static/index.html',
-            host="127.0.0.1",
-            port=5000
-        )
-    )
 
 
 if __name__ == '__main__':
