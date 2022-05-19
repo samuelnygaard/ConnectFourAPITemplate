@@ -1,7 +1,7 @@
 
 version: "3"
 services:
-  emily-connectfouragentapitemplate-mdt3yk:
+  emily-connectfourapitemplate-mdy08y:
     volumes:
       - ../../:/workspace:cached
 

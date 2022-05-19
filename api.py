@@ -1,4 +1,3 @@
-
 import uvicorn
 import random
 
@@ -7,16 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 
-from utilities.utilities import get_uptime
-from utilities.environment import Environment
-from utilities.logging.config import initialize_logging, initialize_logging_middleware
-
-from ml.emily import Emily
 from static.render import render
 from starlette.responses import HTMLResponse
-
-
-emily = Emily()
 
 # --- Welcome to your Emily API! --- #
 # See the README for guides on how to test it.
@@ -28,9 +19,6 @@ emily = Emily()
 
 app = FastAPI()
 
-initialize_logging()
-initialize_logging_middleware(app)
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -39,29 +27,52 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class GameItem(BaseModel):
     board: List[List[str]]
     player_symbol: str
 
 
-@app.post('/api/nextmove')
+@app.post('/api/nextMove')
 def nextmove(game: GameItem):
+
+    """
+    # Example board:
+    [['-', '-', '-', '-', '-', '-', '-'],
+    ['-', '-', '-', '-', '-', '-', '-'],
+    ['-', '-', '-', '-', '-', '-', '-'],
+    ['-', '-', '-', '-', '-', '-', '-'],
+    ['-', '-', '-', '-', '-', '-', '-'],
+    ['-', '-', 'O', 'X', 'X', '-', '-']]
+
+    Player symbol is 'O' or 'X' but can be found in game.player_symbol
+    """
 
     # Select random column to drop piece into
     board_width = len(game.board[0])
-    column = random.randint(0, board_width-1)
+    column = random.randint(0, board_width - 1)
 
     # TODO: Implement clever connect four agent here
 
     return {'response': column}
 
 
-@app.get('/api/getname')
+@app.get('/api/getAgentName')
 def getname():
-
     # TODO: Set your agent's name here
-    name = "AgentName"
+    name = "MyAgentName"
     return {'response': name}
+
+
+# @app.get('/')
+# def index():
+#     return HTMLResponse(
+#         render(
+#             'static/index.html',
+#             host="127.0.0.1",
+#             port=5000
+#         )
+#     )
 
 
 if __name__ == '__main__':
@@ -70,4 +81,3 @@ if __name__ == '__main__':
         host="127.0.0.1",
         port=5000
     )
-

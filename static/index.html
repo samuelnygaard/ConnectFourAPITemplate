@@ -194,7 +194,7 @@
         <p>To begin, try some of the following:</p>
         <ul>
           <li>
-            ↪️ Run <code id="curl">curl http://{{host}}:{{port}}/api</code> to test your API endpoint
+            ↪️ Run <code id="curl">curl http://{{host}}:{{port}}/api/getAgentName</code> to test your API endpoint
           </li>
           <li>
             📄 Visit <a target="_blank" href="/docs">http://{{host}}:{{port}}/docs</a> to review and test the
@@ -240,7 +240,7 @@
   const delay = (ms) => new Promise((resolve) => setTimeout(() => { resolve() }, ms))
 
   const updateRequestOutput = async () => {
-    const response = await fetch('/api')
+    const response = await fetch('/api/getAgentName')
     const data = await response.json()
     output.innerHTML = JSON.stringify(data, null, 2)
   }

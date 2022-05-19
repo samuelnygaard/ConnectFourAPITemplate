@@ -1,4 +1,4 @@
-FROM ambolt/emily:1.0.0-torch-cv
+FROM ambolt/emily:1.0.0-torch-slim
 
 WORKDIR /workspace
 
@@ -23,14 +23,14 @@ fi;
 # RUN apt-get --allow-releaseinfo-change -y update && apt-get install -y #     package1 #     package2 ... 
 
 # Create and set the project user
-RUN adduser --disabled-password --gecos "" --home /home/ConnectFourAgen --force-badname ConnectFourAgen
-RUN adduser ConnectFourAgen sudo
-RUN chown ConnectFourAgen /workspace
-RUN chown ConnectFourAgen /home/ConnectFourAgen
+RUN adduser --disabled-password --gecos "" --home /home/ConnectFourAPIT --force-badname ConnectFourAPIT
+RUN adduser ConnectFourAPIT sudo
+RUN chown ConnectFourAPIT /workspace
+RUN chown ConnectFourAPIT /home/ConnectFourAPIT
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-USER ConnectFourAgen
+USER ConnectFourAPIT
 
-ENV PATH="/home/ConnectFourAgen/.local/bin:$PATH"
+ENV PATH="/home/ConnectFourAPIT/.local/bin:$PATH"
 
 # Install Pip requirements
 COPY requirements.txt requirements.txt

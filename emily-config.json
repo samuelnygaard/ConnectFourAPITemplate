@@ -1,8 +1,8 @@
 {
-    "id": "MDT3YK",
-    "name": "ConnectFourAgentAPITemplate",
-    "containerName": "emily-connectfouragentapitemplate-mdt3yk",
-    "image": "torch-cv",
+    "id": "MDY08Y",
+    "name": "ConnectFourAPITemplate",
+    "containerName": "emily-connectfourapitemplate-mdy08y",
+    "image": "torch-slim",
     "imageVersion": "1.0.0",
     "emilyVersion": "3.0.2",
     "mountTargets": []
