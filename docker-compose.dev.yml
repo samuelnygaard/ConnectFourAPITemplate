@@ -1,7 +1,0 @@
-
-version: "3"
-services:
-  emily-connectfourapitemplate-mdy08y:
-    volumes:
-      - ../../:/workspace:cached
-
