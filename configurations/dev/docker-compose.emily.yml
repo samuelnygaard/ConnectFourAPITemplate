@@ -1,10 +1,10 @@
 version: "3"
 
 services:
-  emily-connectfouragentapitemplate-mdt3yk:
+  emily-connectfourapitemplate-mdy08y:
 
-    image: emily-connectfouragentapitemplate-mdt3yk
-    container_name: emily-connectfouragentapitemplate-mdt3yk
+    image: emily-connectfourapitemplate-mdy08y
+    container_name: emily-connectfourapitemplate-mdy08y
 
     build:
       context: ../../
@@ -19,9 +19,9 @@ services:
     ipc: ${IPC}
     runtime: ${RUNTIME}
     networks:
-      - emily-connectfouragentapitemplate-mdt3yk-network
+      - emily-connectfourapitemplate-mdy08y-network
 
 networks:
-  emily-connectfouragentapitemplate-mdt3yk-network:
+  emily-connectfourapitemplate-mdy08y-network:
     driver: bridge
-    name: emily-connectfouragentapitemplate-mdt3yk-network
+    name: emily-connectfourapitemplate-mdy08y-network
