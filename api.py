@@ -1,5 +1,4 @@
 import uvicorn
-import random
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,6 +10,7 @@ from utilities.logging.config import (initialize_logging,
 
 from static.render import render
 from starlette.responses import HTMLResponse
+from .agent import Agent
 
 # --- Welcome to your Emily API! --- #
 # See the README for guides on how to test it.
@@ -42,32 +42,13 @@ class GameItem(BaseModel):
 
 @app.post('/api/nextMove')
 def nextmove(game: GameItem):
-
-    """
-    # Example board:
-    [['-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', '-', '-', '-', '-', '-'],
-    ['-', '-', 'O', 'X', 'X', '-', '-']]
-
-    Player symbol is 'O' or 'X' but can be found in game.player_symbol
-    """
-
-    # Select random column to drop piece into
-    board_width = len(game.board[0])
-    column = random.randint(0, board_width - 1)
-
-    # TODO: Implement clever connect four agent here
-
-    return {'response': column}
+    return {'response': Agent(game).next_move()}
 
 
 @app.get('/api/getAgentName')
 def getname():
     # TODO: Set your agent's name here
-    name = "MyAgentName"
+    name = "Team 1: Gudik + Kyrke + Sam"
     return {'response': name}
 
 
