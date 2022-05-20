@@ -1,0 +1,9 @@
+{
+    "id": "B6L3DR",
+    "name": "ConnectFourAPITemplate",
+    "containerName": "emily-connectfourapitemplate-b6l3dr",
+    "image": "torch-slim",
+    "imageVersion": "1.0.0",
+    "emilyVersion": "3.0.2",
+    "mountTargets": []
+}

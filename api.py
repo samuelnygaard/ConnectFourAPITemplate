@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
+from utilities.environment import Environment
 
 from static.render import render
 from starlette.responses import HTMLResponse
@@ -69,15 +70,16 @@ def index():
     return HTMLResponse(
         render(
             'static/index.html',
-            host="127.0.0.1",
-            port=5000
+            host=Environment().HOST_IP,
+            port=Environment().CONTAINER_PORT
         )
     )
 
 
 if __name__ == '__main__':
+
     uvicorn.run(
         'api:app',
-        host="127.0.0.1",
-        port=5000
+        host=Environment().HOST_IP,
+        port=Environment().CONTAINER_PORT
     )

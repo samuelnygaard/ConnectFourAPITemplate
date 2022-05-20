@@ -1,0 +1,16 @@
+{
+    "type": "server",
+    "environment": "staging",
+    "configuration": "dev",
+    "excludes": [],
+    "mounts": [],
+    "target": {
+        "name": "ConnectFourVM"
+    },
+    "options": {
+        "workers": 1,
+        "force": false,
+        "run": "./deployments/staging/post_deployment_hook.sh",
+        "serverDirectory": "/home/azureuser"
+    }
+}
