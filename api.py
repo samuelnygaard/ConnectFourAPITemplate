@@ -6,6 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 from utilities.environment import Environment
+from utilities.logging.config import (initialize_logging,
+                                      initialize_logging_middleware)
 
 from static.render import render
 from starlette.responses import HTMLResponse
@@ -19,6 +21,10 @@ from starlette.responses import HTMLResponse
 # trust before deploying your API to production.
 
 app = FastAPI()
+
+initialize_logging()
+initialize_logging_middleware(app)
+
 
 app.add_middleware(
     CORSMiddleware,
