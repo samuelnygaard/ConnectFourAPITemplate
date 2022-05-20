@@ -10,7 +10,7 @@ from utilities.logging.config import (initialize_logging,
 
 from static.render import render
 from starlette.responses import HTMLResponse
-from .agent import Agent
+from agent import Agent
 
 # --- Welcome to your Emily API! --- #
 # See the README for guides on how to test it.

@@ -27,8 +27,9 @@ class Agent:
 
     def next_move(self, ab = True):
         board = Board()
-        board.board = self.transform_board() 
-        player = PlayerAB(self.depth, True) if ab else PlayerMM(self.depth, True)
+        board.board = self.transform_board()
+        isPlayerOne = self.player_symbol == 'X'
+        player = PlayerAB(self.depth, isPlayerOne) if ab else PlayerMM(self.depth, isPlayerOne)
         return player.findMove(board)
 
 if __name__ == '__main__':
