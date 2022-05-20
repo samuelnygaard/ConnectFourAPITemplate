@@ -1,34 +1,35 @@
+import time
 from math import gamma
-import random
-from player import PlayerAB
+from player import PlayerAB, PlayerMM
+from board import Board
 
 class Agent:
     board: None
     player_symbol: None
+    depth = 5
 
-    def __init__(self, board, player_symbol) -> None:
+    def __init__(self, board, player_symbol, depth = 5) -> None:
         self.board = board
         self.player_symbol = player_symbol
+        self.depth = depth
 
     def get_symbol(self, i):
         return 1 if i == self.player_symbol else 0
 
     def transform_board(self):
-        new_board = self.board
-        for i in range(0, 6):
-            for j in range(0, 7):
+        new_board = [[] for _ in range(6)]
+        for j in range(0, 7):
+            for i in range(0, 6):
                 s = self.board[i][j]
-                if s == '-':
-                    new_board[i][j] = None
-                else:
-                    new_board[i][j] = self.get_symbol(s)
+                if s != '-':
+                    new_board[i].append(self.get_symbol(s))
         return new_board
 
-    def next_move(self):
-        board = self.transform_board()
-        board_width = len(self.board[0])
-        column = random.randint(0, board_width - 1)
-        return column
+    def next_move(self, ab = True):
+        board = Board()
+        board.board = self.transform_board() 
+        player = PlayerAB(self.depth, True) if ab else PlayerMM(self.depth, True)
+        return player.findMove(board)
 
 if __name__ == '__main__':
     board = [['-', '-', '-', 'O', '-', '-', 'O'],
@@ -39,4 +40,9 @@ if __name__ == '__main__':
          ['-', '-', 'O', '-', 'O', '-', '-']]
     s = 'X'
 
-    print(Agent(board, s).next_move())
+    start = time.time()
+    print(Agent(board, s, 7).next_move())
+    end = time.time()
+    print('time: ')
+    print(end - start)
+

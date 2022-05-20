@@ -71,6 +71,7 @@ class Board(object):
         self.lastMove = (piece, column)
         self.numMoves += 1
         self.board[column].append(piece)
+        return
 
 
     ########################################################################
@@ -81,7 +82,7 @@ class Board(object):
     # A child is of the form (move_to_make_child, child_object)
     def children(self):
         children = []
-        for i in range(7):
+        for i in range(0, 6):
             if len(self.board[i]) < 6:
                 child = Board(self)
                 child.makeMove(i)

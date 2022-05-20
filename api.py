@@ -42,7 +42,8 @@ class GameItem(BaseModel):
 
 @app.post('/api/nextMove')
 def nextmove(game: GameItem):
-    return {'response': Agent(game).next_move()}
+    depth = 5
+    return {'response': Agent(game.board, game.player_symbol, depth).next_move(True)}
 
 
 @app.get('/api/getAgentName')
